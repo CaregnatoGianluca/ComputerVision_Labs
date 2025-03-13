@@ -8,7 +8,7 @@ int main(int argc, char** argv) {
         return 0;
     }
 
-    cv::Mat img = cv::imread(argv[1]).clone();
+    cv::Mat img = cv::imread(argv[1]);
     if (img.empty()) {
         std::cout << "File name is wrong or the file does not exist\n";
         return 0;
@@ -31,7 +31,7 @@ int main(int argc, char** argv) {
     cv::namedWindow("Modified Image1");
     cv::imshow("Modified Image1", img);
 
-    cv::Mat img2 = cv::imread(argv[1]).clone();
+    cv::Mat img2 = cv::imread(argv[1]);
 
     for (int row = 0; row < img2.rows; ++row) {
         for (int col = 0; col < img2.cols; ++col) {
@@ -41,7 +41,7 @@ int main(int argc, char** argv) {
     cv::namedWindow("Modified Image2");
     cv::imshow("Modified Image2", img2);
 
-    cv::Mat img3 = cv::imread(argv[1]).clone();
+    cv::Mat img3 = cv::imread(argv[1]);
 
     for (int row = 0; row < img3.rows; ++row) {
         for (int col = 0; col < img3.cols; ++col) {
