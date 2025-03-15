@@ -25,16 +25,16 @@ int main(int argc, char** argv){
 
     Filters filter;
 
-    filter.averageFilter(gray, output1, 3);
-    filter.averageFilter(gray, output2, 5);
-    filter.averageFilter(gray, output3, 7);
+    filter.averageFilter(gray, output1, 5);
+    cv::avgFilter
+    cv::blur(gray, output2, cv::Size(5, 5));
 
 
     cv::imshow("Original image", img);
 	cv::imshow("Gray image", gray);
 	cv::imshow("Average filter1", output1);
     cv::imshow("Average filter2", output2);
-    cv::imshow("Average filter3", output3);
+    //cv::imshow("Average filter3", output3);
 
 	cv::waitKey(0);
 
