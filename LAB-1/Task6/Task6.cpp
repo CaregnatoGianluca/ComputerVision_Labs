@@ -26,9 +26,10 @@ int main(int argc, char** argv){
     Filters filter;
     int kernelSize = 5;
     filter.averageFilter(gray, output1, kernelSize);
-
-
     //cv::blur(gray, output2, cv::Size(kernelSize, kernelSize));
+    
+    
+    //SobelFilter:
     cv::Sobel(gray, output2, CV_64F, 1, 0, kernelSize);
     cv::Sobel(gray, output3, CV_64F, 0, 1, kernelSize);
 
