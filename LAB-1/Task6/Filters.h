@@ -6,6 +6,8 @@
 class Filters{
     public:
     void averageFilter(const cv::Mat&, cv::Mat&, int);
+    void maxFilter(const cv::Mat&, cv::Mat&, int);
+    void minFilter(const cv::Mat&, cv::Mat&, int);
 
 };
 
