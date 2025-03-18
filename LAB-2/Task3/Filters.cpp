@@ -33,7 +33,7 @@ void Filters::maxFilter(const cv::Mat& input, cv::Mat& output, int kernelSize){
     //let's initialize the output matrix
     output = cv::Mat::zeros(input.size(), input.type());
 
-    int max; //they will be used to compute the average
+    int max; //it will be used to compute the max
 
     //Now we want to create a loop that modify one by one all pixels in the image
     for(int x = 0; x < input.cols; x++){
@@ -50,7 +50,7 @@ void Filters::maxFilter(const cv::Mat& input, cv::Mat& output, int kernelSize){
                 }
             }
 
-            output.at<uchar>(y,x) = max; //if we are not on a border, counter is equal to kernelSize*kernelSize
+            output.at<uchar>(y,x) = max;
 
         }
     }
@@ -60,7 +60,7 @@ void Filters::minFilter(const cv::Mat& input, cv::Mat& output, int kernelSize){
     //let's initialize the output matrix
     output = cv::Mat::zeros(input.size(), input.type());
 
-    int min; //they will be used to compute the average
+    int min; //it will be used to compute the min
 
     //Now we want to create a loop that modify one by one all pixels in the image
     for(int x = 0; x < input.cols; x++){
@@ -77,8 +77,44 @@ void Filters::minFilter(const cv::Mat& input, cv::Mat& output, int kernelSize){
                 }
             }
 
-            output.at<uchar>(y,x) = min; //if we are not on a border, counter is equal to kernelSize*kernelSize
+            output.at<uchar>(y,x) = min;
 
         }
     }
 }
+
+void medianFilter(const cv::Mat& input, cv::Mat& output, int kernelSize) {
+    // Initialize the output matrix
+    output = cv::Mat::zeros(input.size(), input.type());
+
+    std::vector<int> vec; // Store all neighbor values
+    vec.reserve(kernelSize * kernelSize); // Avoid reallocations
+
+    // Process each pixel in the image
+    for (int x = 0; x < input.cols; x++) {
+        for (int y = 0; y < input.rows; y++) {
+            vec.clear(); // Reset the vector before filling it again
+
+            // Collect neighborhood values
+            for (int i = -kernelSize / 2; i <= kernelSize / 2; i++) {
+                for (int j = -kernelSize / 2; j <= kernelSize / 2; j++) {
+                    // Check if the neighbor is within bounds
+                    if ((x + i >= 0) && (x + i < input.cols) && (y + j >= 0) && (y + j < input.rows)) {
+                        vec.push_back(input.at<uchar>(y + j, x + i));   
+                    }
+                }
+            }
+
+            // Assign the median value to the output pixel
+            output.at<uchar>(y, x) = Filters::median(vec);
+        }
+    }
+}
+
+// Function to compute the median
+static int Filters::median(std::vector<int>& vec) {
+    std::sort(vec.begin(), vec.end()); // Sort the vector
+    return vec[vec.size() / 2]; // Return the middle element
+}
+
+
