@@ -17,7 +17,7 @@ int main(int argc, char** argv){
     }
     
     Filters filter;
-    int kernelSize = 3;
+    int kernelSize = 9;
     
     cv::Mat gray;
     cv::cvtColor(img, gray, cv::COLOR_BGR2GRAY);
@@ -25,10 +25,10 @@ int main(int argc, char** argv){
     cv::Mat output1, output2, output3;
 
     //Max filter
-    filter.maxFilter(gray, output1, kernelSize);
+    //filter.maxFilter(gray, output1, kernelSize);
 
     //Min filter
-    filter.minFilter(gray, output2, kernelSize);
+    //filter.minFilter(gray, output2, kernelSize);
 
     //Median Filter
     filter.medianFilter(gray, output3, kernelSize);
@@ -37,6 +37,7 @@ int main(int argc, char** argv){
 	cv::imshow("Gray image", gray);
     cv::imshow("Max Filter", output1);
     cv::imshow("Min Filter", output2);
+    cv::imshow("Median Filter", output3);
     
     cv::waitKey(0);
 
