@@ -3,7 +3,6 @@
 #include <iostream>
 
 
-
 int main(int argc, char** argv){
 
     if (argc < 2) {
@@ -23,13 +22,16 @@ int main(int argc, char** argv){
     cv::Mat gray;
     cv::cvtColor(img, gray, cv::COLOR_BGR2GRAY);
 
-    cv::Mat output1, output2;
+    cv::Mat output1, output2, output3;
 
     //Max filter
     filter.maxFilter(gray, output1, kernelSize);
 
     //Min filter
     filter.minFilter(gray, output2, kernelSize);
+
+    //Median Filter
+    filter.medianFilter(gray, output3, kernelSize);
 
     cv::imshow("Original image", img);
 	cv::imshow("Gray image", gray);

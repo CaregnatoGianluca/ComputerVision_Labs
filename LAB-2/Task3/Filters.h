@@ -12,7 +12,7 @@ class Filters{
     void minFilter(const cv::Mat&, cv::Mat&, int);
     void medianFilter(const cv::Mat&, cv::Mat&, int);
     private:
-    int median(std::vector<int>&);
+    static int median(std::vector<int>&);
 
 };
 

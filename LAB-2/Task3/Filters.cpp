@@ -83,7 +83,7 @@ void Filters::minFilter(const cv::Mat& input, cv::Mat& output, int kernelSize){
     }
 }
 
-void medianFilter(const cv::Mat& input, cv::Mat& output, int kernelSize) {
+void Filters::medianFilter(const cv::Mat& input, cv::Mat& output, int kernelSize) {
     // Initialize the output matrix
     output = cv::Mat::zeros(input.size(), input.type());
 
@@ -112,7 +112,7 @@ void medianFilter(const cv::Mat& input, cv::Mat& output, int kernelSize) {
 }
 
 // Function to compute the median
-static int Filters::median(std::vector<int>& vec) {
+int Filters::median(std::vector<int>& vec) {
     std::sort(vec.begin(), vec.end()); // Sort the vector
     return vec[vec.size() / 2]; // Return the middle element
 }
