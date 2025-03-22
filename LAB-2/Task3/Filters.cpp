@@ -18,7 +18,7 @@ void Filters::averageFilter(const cv::Mat& input, cv::Mat& output, int kernelSiz
                     //since we can have some problems with the borders we check if the neighbor exists
                     if((x + i >= 0) && (x + i < input.cols) && (y + j >= 0) && (y + j < input.rows)){ 
                         counter++;
-                        sum += input.at<uchar>(y + i, x + j);
+                        sum += input.at<uchar>(y + j, x + i);
                     }
                 }
             }
@@ -44,8 +44,8 @@ void Filters::maxFilter(const cv::Mat& input, cv::Mat& output, int kernelSize){
                 for(int j = -kernelSize/2; j <= kernelSize/2; j++){
                     //since we can have some problems with the borders we check if the neighbor exists
                     if((x + i >= 0) && (x + i < input.cols) && (y + j >= 0) && (y + j < input.rows)){ 
-                        if(input.at<uchar>(y + i, x + j) > max)
-                            max = input.at<uchar>(y + i, x + j);
+                        if(input.at<uchar>(y + j, x + i) > max)
+                            max = input.at<uchar>(y + j, x + i);
                     }
                 }
             }
@@ -71,8 +71,8 @@ void Filters::minFilter(const cv::Mat& input, cv::Mat& output, int kernelSize){
                 for(int j = -kernelSize/2; j <= kernelSize/2; j++){
                     //since we can have some problems with the borders we check if the neighbor exists
                     if((x + i >= 0) && (x + i < input.cols) && (y + j >= 0) && (y + j < input.rows)){ 
-                        if(input.at<uchar>(y + i, x + j) < min)
-                            min = input.at<uchar>(y + i, x + j);
+                        if(input.at<uchar>(y + j, x + i) < min)
+                            min = input.at<uchar>(y + j, x + i);
                     }
                 }
             }

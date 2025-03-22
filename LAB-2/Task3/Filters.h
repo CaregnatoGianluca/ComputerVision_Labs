@@ -4,17 +4,14 @@
 #include <vector>
 #include <algorithm>
 
-
-class Filters{
+class Filters {
     public:
-    void averageFilter(const cv::Mat&, cv::Mat&, int);
-    void maxFilter(const cv::Mat&, cv::Mat&, int);
-    void minFilter(const cv::Mat&, cv::Mat&, int);
-    void medianFilter(const cv::Mat&, cv::Mat&, int);
+    static void averageFilter(const cv::Mat&, cv::Mat&, int);
+    static void maxFilter(const cv::Mat&, cv::Mat&, int);
+    static void minFilter(const cv::Mat&, cv::Mat&, int);
+    static void medianFilter(const cv::Mat&, cv::Mat&, int);
     private:
     static int median(std::vector<int>&);
-
 };
-
 
 #endif
