@@ -43,7 +43,7 @@ int main(int argc, char** argv) {
 
     if (argc < 2) {
         std::cout << "provide the image file name!\n";
-        return -1; // Return -1 usually indicates an error occurred
+        return -1; 
     }
 
     cv::Mat img = cv::imread(argv[1]); 
@@ -55,14 +55,14 @@ int main(int argc, char** argv) {
 
     // Convert the image to grayscale
     cv::Mat gray; // Create a Mat object to hold the grayscale version
-    cv::cvtColor(img, gray, cv::COLOR_BGR2GRAY); // Do the conversion
+    cv::cvtColor(img, gray, cv::COLOR_BGR2GRAY);
     std::cout << "Converted image to grayscale." << std::endl;
 
     // Show the grayscale image
-    cv::imshow("GrayGarden", gray); //
+    cv::imshow("GrayGarden", gray); 
     std::cout << "Displaying grayscale image." << std::endl;
 
-    // Try saving the grayscale image
+    // saving the grayscale image
     if (!cv::imwrite("GrayGarden.jpg", gray)) 
          std::cerr << "Warning: Couldn't save GrayGarden.jpg for some reason." << std::endl;
 
@@ -73,7 +73,7 @@ int main(int argc, char** argv) {
     plotHistogram(gray, 64,  "Histogram (64 Bins)");  // Less detail
 
     std::cout << "Calculating and displaying histogram with 16 bins" << std::endl;
-    plotHistogram(gray, 16,  "Histogram (16 Bins)");  // Even less detail (more blocky)
+    plotHistogram(gray, 16,  "Histogram (16 Bins)");  // Even less detail
 
 
     cv::waitKey(0);
