@@ -1,13 +1,13 @@
 #include <opencv2/opencv.hpp>
 #include <iostream>
 #include <string>
-#include <cmath> // Needed for abs()
+#include <cmath> 
 
 // Structure to hold the data needed by the callback
 struct MouseCallbackData {
-    const cv::Mat* original_image_ptr; // Pointer to the *unmodified* source image
-    cv::Mat* display_image_ptr;      // Pointer to the image being *shown* (will become the mask)
-    std::string window_name;         // Name of the window to update
+    const cv::Mat* original_image_ptr; //it's const because I don't want that the original image can be modified
+    cv::Mat* display_image_ptr;      // it will become the mask
+    std::string window_name;         
 };
 
 void click(int event, int x, int y, int flags, void* userdata);
@@ -15,11 +15,6 @@ void click(int event, int x, int y, int flags, void* userdata);
 int main(int argc, char** argv) {
 
     std::string filename = "Robocup.jpg";
-    if (argc >= 2) {
-        filename = argv[1];
-    } else {
-        std::cout << "No image filename provided. Trying default 'Robocup.jpg'\n";
-    }
 
     cv::Mat original_image = cv::imread(filename); // Load the original image
     if (original_image.empty()) {
@@ -27,23 +22,23 @@ int main(int argc, char** argv) {
         return -1;
     }
 
-    // Create the image that will be displayed and modified by the callback
     cv::Mat display_image = original_image.clone();
-    std::string window_title = "Image";
+    std::string window_title = "Mask";
 
     // Prepare the data structure to pass to the callback
     MouseCallbackData cb_data;
     cb_data.original_image_ptr = &original_image; // Address of the original
-    cb_data.display_image_ptr = &display_image;    // Address of the one to display/modify
+    cb_data.display_image_ptr = &display_image;    // Address of the one to create and display
     cb_data.window_name = window_title;
 
     cv::namedWindow(window_title);
+    cv::namedWindow("Image");
     // Pass the address of our data structure as userdata
-    cv::setMouseCallback(window_title, click, &cb_data);
+    cv::setMouseCallback("Image", click, &cb_data);
 
+    cv::imshow("Image", original_image);
     cv::imshow(window_title, display_image); // Initial display (shows original at first)
     cv::waitKey(0);
-    cv::destroyAllWindows(); // Clean up window
     return 0;
 }
 
@@ -66,30 +61,22 @@ void click(int event, int x, int y, int flags, void* userdata) {
         cv::Mat& display_img = *(data->display_image_ptr); // We will modify this one
         const std::string& window_name = data->window_name;
 
-        // Ensure coordinates are within image bounds (using original image dimensions)
-        if (x < 0 || x >= original_img.cols || y < 0 || y >= original_img.rows) {
-            std::cout << "Clicked outside image bounds." << std::endl;
-            return;
-        }
-
-        // Get the clicked pixel color FROM THE ORIGINAL UNMODIFIED IMAGE
+        // Get the clicked pixel color
         cv::Vec3b clicked_pixel_color = original_img.at<cv::Vec3b>(y, x);
         std::cout << "Clicked Color (BGR): "
                   << (int)clicked_pixel_color[0] << ", "
                   << (int)clicked_pixel_color[1] << ", "
                   << (int)clicked_pixel_color[2] << std::endl;
 
-        int tolerance = 25;
+        int tolerance = 45;
 
-        // Create a new mask image, initialized to black.
-        // Use the dimensions of the original image.
+        // Create a new mask image, initialized to black with the same dim of the origina
         cv::Mat mask = cv::Mat::zeros(original_img.size(), original_img.type());
 
-        // Iterate through the ORIGINAL image to build the mask
-        for (int j = 0; j < original_img.rows; j++) { // Iterate rows (y)
-            for (int i = 0; i < original_img.cols; i++) { // Iterate columns (x)
+        for (int j = 0; j < original_img.rows; j++) { // Iterate rows
+            for (int i = 0; i < original_img.cols; i++) { // Iterate columns
 
-                // Get the current pixel color FROM THE ORIGINAL UNMODIFIED IMAGE
+                // Get the current pixel color 
                 cv::Vec3b current_pixel_color = original_img.at<cv::Vec3b>(j, i);
 
                 // Check if *each* channel is within the tolerance range
@@ -105,12 +92,8 @@ void click(int event, int x, int y, int flags, void* userdata) {
             }
         }
 
-        // Update the image being displayed (pointed to by data->display_image_ptr)
-        // with the newly created mask.
         display_img = mask; // This modifies the 'display_image' variable in main()
 
-        // Refresh the display in the window
         cv::imshow(window_name, display_img); // Use the updated display_img
-        std::cout << "Mask updated and displayed." << std::endl;
     }
 }
