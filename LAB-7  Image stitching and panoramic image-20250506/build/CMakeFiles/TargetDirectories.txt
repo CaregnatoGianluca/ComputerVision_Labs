@@ -1,0 +1,3 @@
+/home/gian-pc/Desktop/ComputerVision_Labs/LAB-7  Image stitching and panoramic image-20250506/build/CMakeFiles/main.dir
+/home/gian-pc/Desktop/ComputerVision_Labs/LAB-7  Image stitching and panoramic image-20250506/build/CMakeFiles/edit_cache.dir
+/home/gian-pc/Desktop/ComputerVision_Labs/LAB-7  Image stitching and panoramic image-20250506/build/CMakeFiles/rebuild_cache.dir
