@@ -177,6 +177,30 @@ code/src/panoramic_utils.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/code/src/panoramic_utils.cpp.s
 .PHONY : code/src/panoramic_utils.cpp.s
 
+code/src/stitcher.o: code/src/stitcher.cpp.o
+.PHONY : code/src/stitcher.o
+
+# target to build an object file
+code/src/stitcher.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/code/src/stitcher.cpp.o
+.PHONY : code/src/stitcher.cpp.o
+
+code/src/stitcher.i: code/src/stitcher.cpp.i
+.PHONY : code/src/stitcher.i
+
+# target to preprocess a source file
+code/src/stitcher.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/code/src/stitcher.cpp.i
+.PHONY : code/src/stitcher.cpp.i
+
+code/src/stitcher.s: code/src/stitcher.cpp.s
+.PHONY : code/src/stitcher.s
+
+# target to generate assembly for a file
+code/src/stitcher.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/code/src/stitcher.cpp.s
+.PHONY : code/src/stitcher.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -192,6 +216,9 @@ help:
 	@echo "... code/src/panoramic_utils.o"
 	@echo "... code/src/panoramic_utils.i"
 	@echo "... code/src/panoramic_utils.s"
+	@echo "... code/src/stitcher.o"
+	@echo "... code/src/stitcher.i"
+	@echo "... code/src/stitcher.s"
 .PHONY : help
 
 

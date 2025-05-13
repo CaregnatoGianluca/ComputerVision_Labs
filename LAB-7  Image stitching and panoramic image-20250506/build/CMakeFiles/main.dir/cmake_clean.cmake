@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/main.dir/code/src/main.cpp.o.d"
   "CMakeFiles/main.dir/code/src/panoramic_utils.cpp.o"
   "CMakeFiles/main.dir/code/src/panoramic_utils.cpp.o.d"
+  "CMakeFiles/main.dir/code/src/stitcher.cpp.o"
+  "CMakeFiles/main.dir/code/src/stitcher.cpp.o.d"
   "main"
   "main.pdb"
 )

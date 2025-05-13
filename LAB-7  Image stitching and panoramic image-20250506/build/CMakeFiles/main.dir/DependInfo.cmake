@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/gian-pc/Desktop/ComputerVision_Labs/LAB-7  Image stitching and panoramic image-20250506/code/src/main.cpp" "CMakeFiles/main.dir/code/src/main.cpp.o" "gcc" "CMakeFiles/main.dir/code/src/main.cpp.o.d"
   "/home/gian-pc/Desktop/ComputerVision_Labs/LAB-7  Image stitching and panoramic image-20250506/code/src/panoramic_utils.cpp" "CMakeFiles/main.dir/code/src/panoramic_utils.cpp.o" "gcc" "CMakeFiles/main.dir/code/src/panoramic_utils.cpp.o.d"
+  "/home/gian-pc/Desktop/ComputerVision_Labs/LAB-7  Image stitching and panoramic image-20250506/code/src/stitcher.cpp" "CMakeFiles/main.dir/code/src/stitcher.cpp.o" "gcc" "CMakeFiles/main.dir/code/src/stitcher.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
