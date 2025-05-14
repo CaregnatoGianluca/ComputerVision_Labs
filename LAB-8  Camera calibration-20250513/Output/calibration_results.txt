@@ -1,0 +1,24 @@
+Calibration Results
+-------------------
+Number of images successfully used: 15
+Image resolution: 3024x4032
+Pattern (inner corners): 10x7
+Square size: 1.50000 (units)
+
+RMS re-projection error: 0.35438 pixels
+
+Camera Matrix (K):
+[2786.153223826212, 0, 1523.477536877637;
+ 0, 2769.634498745938, 2040.999965417123;
+ 0, 0, 1]
+
+Distortion Coefficients (k1, k2, p1, p2, [k3, k4, k5, k6]):
+[0.05602996356375878, 2.153358426294065, 0.004660855620350257, 0.002592318825634393, -14.79062485748627]
+
+Mean Reprojection Error (calculated manually for verification, should match RMS): 0.35438 pixels
+
+
+--- Report on Mean Reprojection Error ---
+The Mean Reprojection Error (MRE), reported as RMS error by cv::calibrateCamera, measures the average distance between observed image corners and re-projected 3D pattern corners using estimated camera parameters. A lower RMS error (ideally < 0.5 pixels) indicates a more accurate calibration.
+It's calculated as sqrt( (sum of squared Euclidean distances between detected and reprojected points) / (total number of points) ).
+-----------------------------------------
